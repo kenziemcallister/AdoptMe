@@ -34,6 +34,11 @@ public class ShelterManager {
 			shelter.add(listOfPets.get(i));
 		}
 		
+		List<Pet> listOfExoticPets = loader.loadExoticPets("src/main/resources/exotic_animals.json");
+		for (int i = 0; i < listOfExoticPets.size(); i++) {
+			shelter.add(listOfExoticPets.get(i));
+		}
+		
 		return shelter;
 	}
 
