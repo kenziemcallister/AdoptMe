@@ -2,14 +2,14 @@ package edu.mu.adopt.pet;
 
 public abstract class Pet {
 	
-	int id;
+	String id;
 	String name;
 	String type;
 	String species;
 	int age;
 	boolean adopted;
 	
-	public Pet(int id, String name, String type, String species, int age) {
+	public Pet(String id, String name, String type, String species, int age) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -19,12 +19,18 @@ public abstract class Pet {
 		this.adopted = false; //set adopted to false at first because never adopted unless we are aware of it
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "Pet [id=" + id + ", name=" + name + ", type=" + type + ", species=" + species + ", age=" + age
+				+ ", adopted=" + adopted + "]";
 	}
 
 	public String getName() {

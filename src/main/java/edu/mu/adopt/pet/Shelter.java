@@ -15,17 +15,21 @@ public class Shelter <T extends Pet> {
 		pets.add(pet);
 	}
 	
-//	public void remove(T pet) {
-//		pets.remove(pet);
-//	}
-//	
-//	public void adopt(T pet) {
-//		pet.adopted = true;
-//	}
-//
-//	public List<T> getPets() {
-//		return pets;
-//	}
+	public void remove(T pet) {
+		pets.remove(pet);
+	}
+	
+	public void adopt(T pet) {
+		if (pet.adopted == true) {
+			System.out.println("Pet has already been adopted.");
+		} else {
+			pet.adopted = true;
+		}
+	}
+
+	public List<T> getPets() {
+		return pets;
+	}
 
 	@Override
 	public String toString() {
