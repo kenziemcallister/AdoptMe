@@ -49,6 +49,7 @@ public class Main {
 		ShelterManager manager = new ShelterManager();
 		Shelter<Pet> shelter = manager.getShelter();
 		System.out.println(shelter.toString());
+		shelter.savePets();
 		
 		//testing the loading from json
 //		LoadPets loader = new LoadPets();

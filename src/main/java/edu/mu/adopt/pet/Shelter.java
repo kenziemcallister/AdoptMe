@@ -1,7 +1,14 @@
 package edu.mu.adopt.pet;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class Shelter <T extends Pet>{
 	
@@ -34,6 +41,24 @@ public class Shelter <T extends Pet>{
 	@Override
 	public String toString() {
 		return "Shelter [pets=" + pets + "]";
+	}
+	
+	//method to save a list to a json file
+	public void savePets() {
+		
+		String timestamp = new SimpleDateFormat("YYYYMMDD_HHMMSS").format(new Date());
+		
+		System.out.println("Saving list to json file...");
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		try (FileWriter fileWriter = new FileWriter("src/main/resources/"+ timestamp + "_pets.json")) {
+			
+			gson.toJson(pets, fileWriter);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("List saved successfully!");
 	}
 
 }
