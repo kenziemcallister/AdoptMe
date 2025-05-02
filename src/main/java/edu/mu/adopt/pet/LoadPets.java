@@ -1,10 +1,13 @@
 package edu.mu.adopt.pet;
 
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -88,8 +91,17 @@ public class LoadPets {
 	//method to save a list to a json file
 	public void savePets(List<Pet> petList) {
 		
+		System.out.println("Saving list to json file...");
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		try (FileWriter fileWriter = new FileWriter("src/main/resources/date_time_here.json")) {
+			
+			gson.toJson(petList, fileWriter);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
-		
+		System.out.println("List saved successfully!");
 	}
 
 }

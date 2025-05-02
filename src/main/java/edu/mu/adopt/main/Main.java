@@ -35,7 +35,7 @@ public class Main {
 		ourShelter.adopt(kenzie);
 		System.out.println(ourShelter.getPets());
 		
-		//Collections.sort(ourShelter.getPets());
+		Collections.sort(ourShelter.getPets());
 		System.out.println(ourShelter.getPets());
 		Collections.sort(ourShelter.getPets(), new CompareAge());
 		System.out.println(ourShelter.getPets());
@@ -59,6 +59,10 @@ public class Main {
 		for (int i = 0; i < listOfExoticPets.size(); i++) {
 			System.out.println("Exotic pet: " + listOfExoticPets.get(i));
 		}
+		
+		//testing saving list to json file
+		System.out.println();
+		loader.savePets(listOfPets);
 		
 
 	}
