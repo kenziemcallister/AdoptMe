@@ -5,14 +5,31 @@ import java.util.List;
 
 public class Shelter <T extends Pet> {
 	
-	private List<T> pets = new ArrayList<>(); //list of pets within the shelter
+	private List<T> pets;//list of pets within the shelter
 	
-	//shelter can add pet
+	public Shelter() {
+		this.pets = new ArrayList<T>();
+	}
+
+	public void add(T pet) {
+		pets.add(pet);
+	}
 	
-	//shelter can have pet adopted (simply change the pet attribute to true)
-	
-	//shelter can get all pets (get the list of pets) getter for list
-	
-	//shelter can remove pet from list?
+//	public void remove(T pet) {
+//		pets.remove(pet);
+//	}
+//	
+//	public void adopt(T pet) {
+//		pet.adopted = true;
+//	}
+//
+//	public List<T> getPets() {
+//		return pets;
+//	}
+
+	@Override
+	public String toString() {
+		return "Shelter [pets=" + pets + "]";
+	}
 
 }

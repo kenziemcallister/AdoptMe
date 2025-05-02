@@ -1,6 +1,6 @@
 package edu.mu.adopt.pet;
 
-public abstract class Pet implements PetSelection{
+public abstract class Pet {
 	
 	int id;
 	String name;
@@ -19,4 +19,53 @@ public abstract class Pet implements PetSelection{
 		this.adopted = false; //set adopted to false at first because never adopted unless we are aware of it
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getSpecies() {
+		return species;
+	}
+
+	public void setSpecies(String species) {
+		this.species = species;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public boolean isAdopted() {
+		return adopted;
+	}
+
+	public void setAdopted(boolean adopted) {
+		this.adopted = adopted;
+	}
+	
+	
 }
