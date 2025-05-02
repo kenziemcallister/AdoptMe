@@ -1,13 +1,25 @@
 package edu.mu.adopt.pet;
 
-public class ExoticAnimalAdapter extends Pet {
+public class ExoticAnimalAdapter implements PetSelection {
 	
 	private ExoticAnimal exoticAnimal;
 
 	public ExoticAnimalAdapter(ExoticAnimal exoticPet) {
-		super(exoticPet.getUniqueId(), exoticPet.getAnimalName(), exoticPet.getCategory(), 
-				exoticPet.getSubSpecies(), exoticPet.getYearsOld());
-		this.exoticAnimal = exoticPet;
+		this.exoticAnimal = exoticPet;	
+	}
+	
+	private class ConvertExoticPet extends Pet {
+
+		public ConvertExoticPet(int id, String name, String type, String species, int age) {
+			super(id, name, type, species, age);
+		
+		}
+		
+	}
+
+	@Override
+	public void addPet() {
+		
 		
 	}
 	

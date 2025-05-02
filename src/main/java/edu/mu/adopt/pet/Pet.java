@@ -1,6 +1,6 @@
 package edu.mu.adopt.pet;
 
-public abstract class Pet {
+public abstract class Pet implements PetSelection{
 	
 	int id;
 	String name;
