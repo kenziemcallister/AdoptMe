@@ -1,6 +1,6 @@
 package edu.mu.adopt.pet;
 
-public abstract class Pet {
+public abstract class Pet implements Comparable <Pet> {
 	
 	String id;
 	String name;
@@ -18,6 +18,12 @@ public abstract class Pet {
 		this.age = age;
 		this.adopted = false; //set adopted to false at first because never adopted unless we are aware of it
 	}
+	
+	@Override
+	public int compareTo(Pet pet) {
+		return this.name.compareTo(pet.name);
+	}
+
 
 	public String getId() {
 		return id;

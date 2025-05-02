@@ -3,7 +3,7 @@ package edu.mu.adopt.pet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Shelter <T extends Pet> {
+public class Shelter <T extends Pet>{
 	
 	private List<T> pets;//list of pets within the shelter
 	
