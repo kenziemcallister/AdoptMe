@@ -1,8 +1,8 @@
-package edu.mu.adopt.sort;
+package edu.mu.adopt.model.sort;
 
 import java.util.Comparator;
 
-import edu.mu.adopt.pet.Pet;
+import edu.mu.adopt.model.pet.Pet;
 
 public class CompareAge implements Comparator <Pet>{
 

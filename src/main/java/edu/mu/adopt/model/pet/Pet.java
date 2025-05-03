@@ -1,4 +1,4 @@
-package edu.mu.adopt.pet;
+package edu.mu.adopt.model.pet;
 
 public abstract class Pet implements Comparable <Pet> {
 	
@@ -35,8 +35,8 @@ public abstract class Pet implements Comparable <Pet> {
 
 	@Override
 	public String toString() {
-		return "Pet [id=" + id + ", name=" + name + ", type=" + type + ", species=" + species + ", age=" + age
-				+ ", adopted=" + adopted + "]";
+		return "Pet Id: " + id + ", Name: " + name + ", Type: " + type + ", Species: " + species + ", Age: " + age
+				+ ", Adoption Status: " + adopted + "]";
 	}
 
 	public String getName() {

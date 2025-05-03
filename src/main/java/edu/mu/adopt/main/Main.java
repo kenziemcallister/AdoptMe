@@ -4,16 +4,20 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import edu.mu.adopt.pet.Cat;
-import edu.mu.adopt.pet.Dog;
-import edu.mu.adopt.pet.ExoticAnimal;
-import edu.mu.adopt.pet.ExoticAnimalAdapter;
-import edu.mu.adopt.pet.LoadPets;
-import edu.mu.adopt.pet.Pet;
-import edu.mu.adopt.pet.Rabbit;
-import edu.mu.adopt.pet.Shelter;
-import edu.mu.adopt.pet.ShelterManager;
-import edu.mu.adopt.sort.*;
+import javax.swing.SwingUtilities;
+
+import edu.mu.adopt.controller.ShelterController;
+import edu.mu.adopt.model.pet.Cat;
+import edu.mu.adopt.model.pet.Dog;
+import edu.mu.adopt.model.pet.ExoticAnimal;
+import edu.mu.adopt.model.pet.ExoticAnimalAdapter;
+import edu.mu.adopt.model.pet.LoadPets;
+import edu.mu.adopt.model.pet.Pet;
+import edu.mu.adopt.model.pet.Rabbit;
+import edu.mu.adopt.model.pet.Shelter;
+import edu.mu.adopt.model.pet.ShelterManager;
+import edu.mu.adopt.model.sort.*;
+import edu.mu.adopt.view.ShelterView;
 
 public class Main {
 
@@ -45,11 +49,11 @@ public class Main {
 //		System.out.println(ourShelter.toString());	
 		
 		//testing singleton with shelter thing
-		System.out.println();
-		ShelterManager manager = new ShelterManager();
-		Shelter<Pet> shelter = manager.getShelter();
-		System.out.println(shelter.toString());
-		shelter.savePets();
+//		System.out.println();
+//		ShelterManager manager = new ShelterManager();
+//		Shelter<Pet> shelter = manager.getShelter();
+//		System.out.println(shelter.toString());
+//		shelter.savePets();
 		
 		//testing the loading from json
 //		LoadPets loader = new LoadPets();
@@ -71,6 +75,15 @@ public class Main {
 //		//testing saving list to json file
 //		System.out.println();
 //		loader.savePets(listOfPets);
+		
+		SwingUtilities.invokeLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				ShelterController controller = new ShelterController();
+				controller.initiate();
+			}
+		});
 		
 
 	}

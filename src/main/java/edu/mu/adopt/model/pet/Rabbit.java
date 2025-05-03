@@ -1,4 +1,4 @@
-package edu.mu.adopt.pet;
+package edu.mu.adopt.model.pet;
 
 public class Rabbit extends Pet {
 
