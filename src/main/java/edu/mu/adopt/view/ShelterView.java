@@ -3,6 +3,7 @@ package edu.mu.adopt.view;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import edu.mu.adopt.model.pet.Pet;
@@ -11,11 +12,15 @@ import edu.mu.adopt.model.pet.ShelterManager;
 
 import javax.swing.JList;
 import java.awt.BorderLayout;
+import java.awt.ScrollPane;
+import java.awt.List;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ShelterView extends JFrame {
 
 	private JPanel panel;
-	private JList list;
 	private ShelterManager manager;
 	
 	public ShelterView(ShelterManager manager) {
@@ -28,6 +33,10 @@ public class ShelterView extends JFrame {
 		setContentPane(panel);
 		getContentPane().setLayout(null);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(38, 24, 623, 188);
+		panel.add(scrollPane);
+		
 		DefaultListModel<Pet> modelList = new DefaultListModel<Pet>(); 
 		
 		for(Pet pet : manager.getShelter().getPets())
@@ -35,8 +44,55 @@ public class ShelterView extends JFrame {
 			modelList.addElement(pet);
 		}
 		
-		list = new JList<Pet>(modelList);
-		list.setBounds(44, 28, 601, 217);
-		panel.add(list);
+		JList list = new JList<Pet>(modelList);
+		scrollPane.setViewportView(list);
+		list.setLayoutOrientation(JList.VERTICAL);
+		
+		JButton btnNewButton = new JButton("ADD");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton.setBounds(38, 224, 89, 29);
+		panel.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("ADOPT");
+		btnNewButton_1.setBounds(139, 224, 89, 29);
+		panel.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("REMOVE");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_2.setBounds(240, 224, 103, 29);
+		panel.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("VIEW");
+		btnNewButton_3.setBounds(355, 224, 89, 29);
+		panel.add(btnNewButton_3);
+		
+		JButton btnNewButton_4 = new JButton("SAVE");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_4.setBounds(456, 224, 89, 29);
+		panel.add(btnNewButton_4);
+		
+		
+//		DefaultListModel<Pet> modelList = new DefaultListModel<Pet>(); 
+//		
+//		for(Pet pet : manager.getShelter().getPets())
+//		{
+//			modelList.addElement(pet);
+//		}
+//		
+//		list = new JList<Pet>(modelList);
+//		list.setBounds(55, 27, 601, 61);
+//		JScrollPane scrollPane = new JScrollPane();
+//		scrollPane.setViewportView(list);
+//		list.setLayoutOrientation(JList.VERTICAL);
+//		panel.add(scrollPane);
 	}	
 }
