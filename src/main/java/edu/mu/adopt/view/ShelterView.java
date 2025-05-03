@@ -44,27 +44,19 @@ public class ShelterView extends JFrame {
 			modelList.addElement(pet);
 		}
 		
-		JList list = new JList<Pet>(modelList);
+		JList<Pet> list = new JList<Pet>(modelList);
 		scrollPane.setViewportView(list);
 		list.setLayoutOrientation(JList.VERTICAL);
 		
 		JButton btnNewButton = new JButton("ADD");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnNewButton.setBounds(38, 224, 89, 29);
 		panel.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("ADOPT");
-		btnNewButton_1.setBounds(139, 224, 89, 29);
-		panel.add(btnNewButton_1);
+		JButton adoptButton = new JButton("ADOPT");
+		adoptButton.setBounds(139, 224, 89, 29);
+		panel.add(adoptButton);
 		
 		JButton btnNewButton_2 = new JButton("REMOVE");
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnNewButton_2.setBounds(240, 224, 103, 29);
 		panel.add(btnNewButton_2);
 		
@@ -73,26 +65,9 @@ public class ShelterView extends JFrame {
 		panel.add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("SAVE");
-		btnNewButton_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnNewButton_4.setBounds(456, 224, 89, 29);
 		panel.add(btnNewButton_4);
 		
 		
-//		DefaultListModel<Pet> modelList = new DefaultListModel<Pet>(); 
-//		
-//		for(Pet pet : manager.getShelter().getPets())
-//		{
-//			modelList.addElement(pet);
-//		}
-//		
-//		list = new JList<Pet>(modelList);
-//		list.setBounds(55, 27, 601, 61);
-//		JScrollPane scrollPane = new JScrollPane();
-//		scrollPane.setViewportView(list);
-//		list.setLayoutOrientation(JList.VERTICAL);
-//		panel.add(scrollPane);
 	}	
 }
