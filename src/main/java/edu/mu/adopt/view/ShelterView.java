@@ -72,17 +72,31 @@ public class ShelterView extends JFrame {
 			}
 		});
 		
-		JButton btnNewButton_2 = new JButton("REMOVE");
-		btnNewButton_2.setBounds(240, 224, 103, 29);
-		panel.add(btnNewButton_2);
+		//remove button
+		JButton removeButton = new JButton("REMOVE");
+		removeButton.setBounds(240, 224, 103, 29);
+		panel.add(removeButton);
+		
+		//remove button action using controller
+		removeButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				List<Pet> selectedPets = list.getSelectedValuesList();
+				controller.removeSelectedPets(selectedPets); //update models
+				
+				for (Pet pet : selectedPets) {
+					modelList.removeElement(pet); //update gui
+				}
+			}
+		});
 		
 		JButton btnNewButton_3 = new JButton("VIEW");
 		btnNewButton_3.setBounds(355, 224, 89, 29);
 		panel.add(btnNewButton_3);
 		
-		JButton btnNewButton_4 = new JButton("SAVE");
-		btnNewButton_4.setBounds(456, 224, 89, 29);
-		panel.add(btnNewButton_4);
+		//save button
+		JButton saveButton = new JButton("SAVE");
+		saveButton.setBounds(456, 224, 89, 29);
+		panel.add(saveButton);
 		
 		
 	}	

@@ -41,5 +41,12 @@ public class ShelterController {
 	}
 	
 	//action for remove button to remove a pet
+	public void removeSelectedPets(List<Pet> pets) {
+		
+		for (Pet pet : pets) {
+			shelterManager.getShelter().remove(pet);
+		}
+		
+	}
 	
 }
