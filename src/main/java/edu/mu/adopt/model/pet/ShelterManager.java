@@ -9,7 +9,7 @@ public class ShelterManager {
 	
 	//constructor that prevents shelter from being instantiated from outside
 	public ShelterManager() {
-		
+		loadPets(); //loading pets only once
 	}
 	
 	/**
@@ -23,10 +23,9 @@ public class ShelterManager {
 	}
 	
 	/**
-	 * 
-	 * */
-	public Shelter<Pet> getShelter() {
-		
+	 * Helper method to make sure pets are only loaded in once from the json files.
+	 */
+	private void loadPets() {
 		LoadPets loader = new LoadPets();
 		List<Pet> listOfPets = loader.loadPets("src/main/resources/pets.json");
 		
@@ -38,7 +37,12 @@ public class ShelterManager {
 		for (int i = 0; i < listOfExoticPets.size(); i++) {
 			shelter.add(listOfExoticPets.get(i));
 		}
-		
+	}
+	
+	/**
+	 * 
+	 * */
+	public Shelter<Pet> getShelter() {
 		return shelter;
 	}
 

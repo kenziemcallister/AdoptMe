@@ -1,4 +1,6 @@
 package edu.mu.adopt.view;
+import edu.mu.adopt.model.sort.CompareAge;
+import edu.mu.adopt.model.sort.CompareSpecies;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
@@ -18,6 +20,10 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class ShelterView extends JFrame {
@@ -54,9 +60,9 @@ public class ShelterView extends JFrame {
 		scrollPane.setViewportView(list);
 		list.setLayoutOrientation(JList.VERTICAL);
 		
-		JButton btnNewButton = new JButton("ADD");
-		btnNewButton.setBounds(38, 224, 89, 29);
-		panel.add(btnNewButton);
+		JButton addButton = new JButton("ADD");
+		addButton.setBounds(38, 224, 89, 29);
+		panel.add(addButton);
 		
 		//adopt button
 		JButton adoptButton = new JButton("ADOPT");
@@ -89,9 +95,9 @@ public class ShelterView extends JFrame {
 			}
 		});
 		
-		JButton btnNewButton_3 = new JButton("VIEW");
-		btnNewButton_3.setBounds(355, 224, 89, 29);
-		panel.add(btnNewButton_3);
+		JButton viewButton = new JButton("VIEW");
+		viewButton.setBounds(355, 224, 89, 29);
+		panel.add(viewButton);
 		
 		//save button
 		JButton saveButton = new JButton("SAVE");
@@ -105,6 +111,28 @@ public class ShelterView extends JFrame {
 			}
 		});
 		
+		//combo box for sorting
+		String[] sortOptions = {"Name", "Age", "Species"};
+		JComboBox<String> comboBox = new JComboBox<>(sortOptions);
+		comboBox.setBounds(38, 279, 89, 22);
+		panel.add(comboBox);
+				
+		//action for combo box
+		comboBox.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				String selection = (String) comboBox.getSelectedItem();
+				List<Pet> sortedPetList = controller.sortPets(selection);
+				
+				modelList.clear();
+				System.out.println(modelList);
+				for (Pet pet : sortedPetList) {
+					modelList.addElement(pet);
+				}
+			}
+			
+		});
 		
-	}	
+	}
+	
 }

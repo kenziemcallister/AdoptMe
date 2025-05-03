@@ -1,11 +1,15 @@
 package edu.mu.adopt.controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.swing.JOptionPane;
 
 import edu.mu.adopt.model.pet.Pet;
 import edu.mu.adopt.model.pet.ShelterManager;
+import edu.mu.adopt.model.sort.CompareAge;
+import edu.mu.adopt.model.sort.CompareSpecies;
 import edu.mu.adopt.view.ShelterView;
 
 public class ShelterController {
@@ -55,6 +59,26 @@ public class ShelterController {
 		String savedSuccess = "List was successfully saved to resources folder.";
 		shelterManager.getShelter().savePets();
 		JOptionPane.showMessageDialog(null, savedSuccess, "Save Successful", JOptionPane.PLAIN_MESSAGE); //adding pop up window
+		
+	}
+	
+	//action for sort combo box
+	public List<Pet> sortPets(String selection) {
+		
+		List<Pet> pets = shelterManager.getShelter().getPets();
+		//System.out.println(pets);
+		switch (selection) {
+			case "Name":
+				Collections.sort(pets);
+				break;
+			case "Age":
+				Collections.sort(pets, new CompareAge());
+				break;
+			case "Species":
+				Collections.sort(pets, new CompareSpecies());
+				break;
+		}
+		return pets;
 		
 	}
 	
