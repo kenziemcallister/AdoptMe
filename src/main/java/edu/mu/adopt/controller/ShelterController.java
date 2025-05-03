@@ -49,4 +49,13 @@ public class ShelterController {
 		
 	}
 	
+	//action for save button to save the pet list
+	public void savePetList() {
+		
+		String savedSuccess = "List was successfully saved to resources folder.";
+		shelterManager.getShelter().savePets();
+		JOptionPane.showMessageDialog(null, savedSuccess, "Save Successful", JOptionPane.PLAIN_MESSAGE); //adding pop up window
+		
+	}
+	
 }

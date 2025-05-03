@@ -98,6 +98,13 @@ public class ShelterView extends JFrame {
 		saveButton.setBounds(456, 224, 89, 29);
 		panel.add(saveButton);
 		
+		//save button action using controller
+		saveButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.savePetList(); //saving pet list to resources through the controller
+			}
+		});
+		
 		
 	}	
 }
