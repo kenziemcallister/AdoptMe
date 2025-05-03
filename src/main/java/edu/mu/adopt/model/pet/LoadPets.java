@@ -22,7 +22,6 @@ public class LoadPets {
 	public List<Pet> loadPets(String filepath) {
 		
 		List<Pet> petList = new ArrayList<>();
-		Gson gson = new Gson();
 		
 		try (FileReader reader = new FileReader(filepath)) {
 			
@@ -36,7 +35,6 @@ public class LoadPets {
 				String type = obj.get("type").getAsString();
 				String species = obj.get("species").getAsString();
 				int age = obj.get("age").getAsInt();
-				boolean adopted = obj.get("adopted").getAsBoolean();
 				
 				//figuring out type of pet so we can instantiate it and add to list
 				if (type.equals("Dog")) {
@@ -60,7 +58,6 @@ public class LoadPets {
 	public List<Pet> loadExoticPets(String filepath) {
 		
 		List<Pet> wrappedPetList = new ArrayList<>();
-		Gson gson = new Gson();
 		
 		try (FileReader reader = new FileReader(filepath)) {
 			
