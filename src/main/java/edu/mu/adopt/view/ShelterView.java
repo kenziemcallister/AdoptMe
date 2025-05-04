@@ -70,7 +70,9 @@ public class ShelterView extends JFrame {
 		scrollPane.setViewportView(list);
 		list.setLayoutOrientation(JList.VERTICAL);
 		
+		//add pet button
 		JButton addButton = new JButton("ADD PET");
+		//add pet button action
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ExoticAnimal newPetType = new ExoticAnimal(getIdField(), getNameField(), getTypeField(),
