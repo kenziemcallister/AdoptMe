@@ -7,13 +7,16 @@ public class ShelterManager {
 	private static ShelterManager instance;
 	private Shelter<Pet> shelter = new Shelter<Pet>();
 	
-	//constructor that prevents shelter from being instantiated from outside
+	/**
+	 * Constructor that prevents the shelter from loading in pets more than once.
+	 */
 	public ShelterManager() {
 		loadPets(); //loading pets only once
 	}
 	
 	/**
-	 * 
+	 * This method is used to get the shelter manager instance.
+	 * Follows singleton design pattern.
 	 * */
 	public static ShelterManager getInstance() {
 		if(instance == null) {
@@ -23,7 +26,7 @@ public class ShelterManager {
 	}
 	
 	/**
-	 * Helper method to make sure pets are only loaded in once from the json files.
+	 * Helper method to make sure pets are only loaded in once from the JSON files.
 	 */
 	private void loadPets() {
 		LoadPets loader = new LoadPets();
@@ -40,7 +43,7 @@ public class ShelterManager {
 	}
 	
 	/**
-	 * 
+	 * This is a getter used to get the shelter from the shelter manager.
 	 * */
 	public Shelter<Pet> getShelter() {
 		return shelter;

@@ -41,6 +41,13 @@ public class ShelterView extends JFrame {
 	private JTextField speciesField;
 	private JTextField ageField;
 	
+	/**
+	 * This is the shelter view used to display the items on the window for the GUI.
+	 * @param manager
+	 * 		This is the shelter manager used to get the shelter following Singleton.
+	 * @param controller
+	 * 		This is the controller used to handle the logic.
+	 */
 	public ShelterView(ShelterManager manager, ShelterController controller) {
 		
 		this.manager = manager;
@@ -50,15 +57,18 @@ public class ShelterView extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 700);
 		
+		//getting the background panel
 		panel = new JPanel();
 		panel.setBackground(new Color(238, 238, 238));
 		setContentPane(panel);
 		getContentPane().setLayout(null);
 		
+		//allow list of pets to be scrollable
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(38, 24, 623, 188);
 		panel.add(scrollPane);
 		
+		//getting the list of pets and adding to the view
 		DefaultListModel<Pet> modelList = new DefaultListModel<Pet>(); 
 		
 		for(Pet pet : manager.getShelter().getPets())
@@ -180,6 +190,7 @@ public class ShelterView extends JFrame {
 		txtrSort.setBounds(48, 229, 56, 22);
 		panel.add(txtrSort);
 		
+		//fields for add pet button 
 		idField = new JTextField();
 		idField.setBounds(126, 264, 130, 26);
 		panel.add(idField);
@@ -238,22 +249,42 @@ public class ShelterView extends JFrame {
 		
 	}
 	
+	/**
+	 * This is a getter for the ID field's text box.
+	 * @return - returns the id.
+	 */
 	public String getIdField() {
 		return idField.getText();
 	}
 	
+	/**
+	 * This is a getter for the name field's text box.
+	 * @return - returns the name.
+	 */
 	public String getNameField() {
 		return nameField.getText();
 	}
 	
+	/**
+	 * This is a getter for the type field's text box.
+	 * @return - returns the type.
+	 */
 	public String getTypeField() {
 		return typeField.getText();
 	}
 	
+	/**
+	 * This is a getter for the species field text box.
+	 * @return - returns the species.
+	 */
 	public String getSpeciesField() {
 		return speciesField.getText();
 	}
 	
+	/**
+	 * This is a getter for the age field's text box.
+	 * @return - returns the age.
+	 */
 	public Integer getAgeField() {
 		int age = -1;
 		

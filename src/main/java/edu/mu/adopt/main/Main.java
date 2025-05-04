@@ -23,6 +23,15 @@ public class Main {
 
 	public static void main(String[] args) {
 		
+		SwingUtilities.invokeLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				ShelterController controller = new ShelterController();
+				controller.initiate();
+			}
+		});
+		
 		//Shelter<Pet> ourShelter = new Shelter<Pet>();
 //		Cat gabi = new Cat("123", "Gabi", "Cat", "Mancoon", 30);
 //		Dog kenzie = new Dog("1234", "Kenzie", "Dog", "Golden", 21);
@@ -75,15 +84,6 @@ public class Main {
 //		//testing saving list to json file
 //		System.out.println();
 //		loader.savePets(listOfPets);
-		
-		SwingUtilities.invokeLater(new Runnable() {
-			
-			@Override
-			public void run() {
-				ShelterController controller = new ShelterController();
-				controller.initiate();
-			}
-		});
 		
 
 	}

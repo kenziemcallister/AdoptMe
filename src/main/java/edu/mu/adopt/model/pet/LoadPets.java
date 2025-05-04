@@ -1,36 +1,34 @@
 package edu.mu.adopt.model.pet;
-import java.sql.Timestamp;
-
 
 import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 public class LoadPets {
 	
-	//need method to load pets from json file
+	/**
+	 * This method is used to load a list of pets from a JSON file.
+	 * @param filepath
+	 * 		The file path to where the JSON file is located to read it.
+	 * @return
+	 * 		Returns a list of pets that was extracted from the JSON file.
+	 */
 	public List<Pet> loadPets(String filepath) {
 		
-		List<Pet> petList = new ArrayList<>();
+		List<Pet> petList = new ArrayList<>(); //new list that will be returned
 		
-		try (FileReader reader = new FileReader(filepath)) {
+		try (FileReader reader = new FileReader(filepath)) { //getting a reader to read the file
 			
 			JsonArray fileArray = JsonParser.parseReader(reader).getAsJsonArray();
-			for (int i = 0; i < fileArray.size(); i++) {
+			for (int i = 0; i < fileArray.size(); i++) { //for each object in the fileArray
 				
 				JsonObject obj = fileArray.get(i).getAsJsonObject();
 				
-				String id = obj.get("id").getAsString();
+				String id = obj.get("id").getAsString(); //get fields for pet
 				String name = obj.get("name").getAsString();
 				String type = obj.get("type").getAsString();
 				String species = obj.get("species").getAsString();
@@ -54,7 +52,14 @@ public class LoadPets {
 		
 	}
 	
-	//method to load the exotic pets
+	/**
+	 * This method is used to load a JSON file of exotic animals
+	 * into a list.
+	 * @param filepath
+	 * 		This is the file path where the JSON file is located.
+	 * @return
+	 * 		Returns a list of exotic animals from the JSON file.
+	 */
 	public List<Pet> loadExoticPets(String filepath) {
 		
 		List<Pet> wrappedPetList = new ArrayList<>();
@@ -62,7 +67,7 @@ public class LoadPets {
 		try (FileReader reader = new FileReader(filepath)) {
 			
 			JsonArray fileArray = JsonParser.parseReader(reader).getAsJsonArray();
-			for (int i = 0; i < fileArray.size(); i++) {
+			for (int i = 0; i < fileArray.size(); i++) { //for each object in the file
 				
 				//wrap the exotic pets to pet list
 				JsonObject obj = fileArray.get(i).getAsJsonObject();
@@ -73,10 +78,10 @@ public class LoadPets {
 	            String subSpecies = obj.get("subSpecies").getAsString();
 	            int yearsOld = obj.get("yearsOld").getAsInt();
 	            
-	            ExoticAnimal exotic = new ExoticAnimal(uniqueId, animalName, category, subSpecies, yearsOld);
+	            ExoticAnimal exotic = new ExoticAnimal(uniqueId, animalName, category, subSpecies, yearsOld); //get the new exotic animal
 	            
-	            ExoticAnimalAdapter wrappedPet = new ExoticAnimalAdapter(exotic);
-	            wrappedPetList.add(wrappedPet);
+	            ExoticAnimalAdapter wrappedPet = new ExoticAnimalAdapter(exotic); //wrap it as a pet
+	            wrappedPetList.add(wrappedPet); //add the wrapped pet to the pet list to return
 				
 			}
 			
