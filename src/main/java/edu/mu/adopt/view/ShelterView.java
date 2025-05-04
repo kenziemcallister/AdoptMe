@@ -9,6 +9,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import edu.mu.adopt.controller.ShelterController;
+import edu.mu.adopt.model.pet.ExoticAnimal;
+import edu.mu.adopt.model.pet.ExoticAnimalAdapter;
 import edu.mu.adopt.model.pet.Pet;
 import edu.mu.adopt.model.pet.Shelter;
 import edu.mu.adopt.model.pet.ShelterManager;
@@ -25,12 +27,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import javax.swing.JTextArea;
+import java.awt.Color;
 
 public class ShelterView extends JFrame {
 
 	private JPanel panel;
 	private ShelterManager manager;
 	private ShelterController controller;
+	private JTextField idField;
+	private JTextField nameField;
+	private JTextField typeField;
+	private JTextField speciesField;
+	private JTextField ageField;
 	
 	public ShelterView(ShelterManager manager, ShelterController controller) {
 		
@@ -42,6 +51,7 @@ public class ShelterView extends JFrame {
 		setBounds(100, 100, 700, 700);
 		
 		panel = new JPanel();
+		panel.setBackground(new Color(238, 238, 238));
 		setContentPane(panel);
 		getContentPane().setLayout(null);
 		
@@ -60,13 +70,35 @@ public class ShelterView extends JFrame {
 		scrollPane.setViewportView(list);
 		list.setLayoutOrientation(JList.VERTICAL);
 		
-		JButton addButton = new JButton("ADD");
-		addButton.setBounds(38, 224, 89, 29);
+		JButton addButton = new JButton("ADD PET");
+		addButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ExoticAnimal newPetType = new ExoticAnimal(getIdField(), getNameField(), getTypeField(),
+						getSpeciesField(), getAgeField());
+				Pet newPet = new ExoticAnimalAdapter(newPetType);
+				
+				controller.addPet(manager.getShelter().getPets(), newPet);
+				
+				boolean idExists = false;
+				
+				for(Pet pet: manager.getShelter().getPets()) {
+					if(pet.getId().compareTo(newPet.getId()) == 0) {
+						idExists = true;
+					}
+				}
+				
+				if(idExists == true)
+				{
+					modelList.addElement(newPet);
+				}
+			}
+		});
+		addButton.setBounds(126, 448, 130, 29);
 		panel.add(addButton);
 		
 		//adopt button
 		JButton adoptButton = new JButton("ADOPT");
-		adoptButton.setBounds(139, 224, 89, 29);
+		adoptButton.setBounds(207, 224, 89, 29);
 		panel.add(adoptButton);
 		
 		//adopt button action using shelter controller
@@ -80,7 +112,7 @@ public class ShelterView extends JFrame {
 		
 		//remove button
 		JButton removeButton = new JButton("REMOVE");
-		removeButton.setBounds(240, 224, 103, 29);
+		removeButton.setBounds(308, 224, 103, 29);
 		panel.add(removeButton);
 		
 		//remove button action using controller
@@ -96,12 +128,19 @@ public class ShelterView extends JFrame {
 		});
 		
 		JButton viewButton = new JButton("VIEW");
-		viewButton.setBounds(355, 224, 89, 29);
+		viewButton.setBounds(423, 224, 89, 29);
 		panel.add(viewButton);
+		
+		viewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				List<Pet> selectedPets = list.getSelectedValuesList();
+				controller.viewSelectedPets(selectedPets);
+			}
+		});
 		
 		//save button
 		JButton saveButton = new JButton("SAVE");
-		saveButton.setBounds(456, 224, 89, 29);
+		saveButton.setBounds(524, 224, 89, 29);
 		panel.add(saveButton);
 		
 		//save button action using controller
@@ -114,9 +153,9 @@ public class ShelterView extends JFrame {
 		//combo box for sorting
 		String[] sortOptions = {"Name", "Age", "Species"};
 		JComboBox<String> comboBox = new JComboBox<>(sortOptions);
-		comboBox.setBounds(38, 279, 89, 22);
+		comboBox.setBounds(106, 227, 89, 22);
 		panel.add(comboBox);
-				
+		
 		//action for combo box
 		comboBox.addActionListener(new ActionListener() {
 			
@@ -133,6 +172,94 @@ public class ShelterView extends JFrame {
 			
 		});
 		
+		JTextArea txtrSort = new JTextArea();
+		txtrSort.setBackground(new Color(238, 238, 238));
+		txtrSort.setText("SORT BY:");
+		txtrSort.setBounds(48, 229, 56, 22);
+		panel.add(txtrSort);
+		
+		idField = new JTextField();
+		idField.setBounds(126, 264, 130, 26);
+		panel.add(idField);
+		idField.setColumns(10);
+		
+		nameField = new JTextField();
+		nameField.setBounds(126, 302, 130, 26);
+		panel.add(nameField);
+		nameField.setColumns(10);
+		
+		typeField = new JTextField();
+		typeField.setBounds(126, 340, 130, 26);
+		panel.add(typeField);
+		typeField.setColumns(10);
+		
+		speciesField = new JTextField();
+		speciesField.setBounds(126, 378, 130, 26);
+		panel.add(speciesField);
+		speciesField.setColumns(10);
+		
+		ageField = new JTextField();
+		ageField.setBounds(126, 416, 130, 26);
+		panel.add(ageField);
+		ageField.setColumns(10);
+		
+		JTextArea txtrPetId = new JTextArea();
+		txtrPetId.setBackground(new Color(238, 238, 238));
+		txtrPetId.setText("PET ID:");
+		txtrPetId.setBounds(38, 269, 76, 16);
+		panel.add(txtrPetId);
+		
+		JTextArea txtrName = new JTextArea();
+		txtrName.setBackground(new Color(238, 238, 238));
+		txtrName.setText("NAME:");
+		txtrName.setBounds(38, 307, 76, 16);
+		panel.add(txtrName);
+		
+		JTextArea txtrType = new JTextArea();
+		txtrType.setBackground(new Color(238, 238, 238));
+		txtrType.setText("TYPE:");
+		txtrType.setBounds(38, 345, 76, 16);
+		panel.add(txtrType);
+		
+		JTextArea txtrSpecies = new JTextArea();
+		txtrSpecies.setBackground(new Color(238, 238, 238));
+		txtrSpecies.setText("SPECIES:");
+		txtrSpecies.setBounds(38, 383, 76, 16);
+		panel.add(txtrSpecies);
+		
+		JTextArea txtrAge = new JTextArea();
+		txtrAge.setBackground(new Color(238, 238, 238));
+		txtrAge.setText("AGE:");
+		txtrAge.setBounds(38, 421, 76, 16);
+		panel.add(txtrAge);
+				
+		
 	}
 	
+	public String getIdField() {
+		return idField.getText();
+	}
+	
+	public String getNameField() {
+		return nameField.getText();
+	}
+	
+	public String getTypeField() {
+		return typeField.getText();
+	}
+	
+	public String getSpeciesField() {
+		return speciesField.getText();
+	}
+	
+	public Integer getAgeField() {
+		int age = -1;
+		
+		try {
+			age = Integer.parseInt(ageField.getText());
+		} catch (Exception e) {
+			return 1;
+		}
+		return age;
+	}
 }

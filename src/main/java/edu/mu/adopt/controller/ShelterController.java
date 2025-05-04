@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import edu.mu.adopt.model.pet.*;
 import edu.mu.adopt.model.pet.Pet;
 import edu.mu.adopt.model.pet.ShelterManager;
 import edu.mu.adopt.model.sort.CompareAge;
@@ -24,6 +25,22 @@ public class ShelterController {
 	
 	public void initiate() {
 		shelterView.setVisible(true);
+	}
+	
+	//action for add pet
+	public void addPet(List<Pet> pets, Pet newPet) {
+		
+		for(Pet pet: pets) {
+			if(pet.getId().compareTo(newPet.getId()) == 0) {
+				JOptionPane.showMessageDialog(null, "Pet ID Already In Use", "Add To Shelter", JOptionPane.PLAIN_MESSAGE);
+				return;
+			}
+		}
+		
+		shelterManager.getShelter().add(newPet);
+		String addMsg = newPet.getName() + " Added to Shelter";
+		
+		JOptionPane.showMessageDialog(null, addMsg, "Add To Shelter", JOptionPane.PLAIN_MESSAGE);
 	}
 	
 	//action for adopt button to adopt pet
@@ -51,6 +68,12 @@ public class ShelterController {
 			shelterManager.getShelter().remove(pet);
 		}
 		
+	}
+	
+	public void viewSelectedPets(List<Pet> pets) {
+		for (Pet pet: pets) {
+			JOptionPane.showMessageDialog(null, pet.toString(), "View Pet Information", JOptionPane.PLAIN_MESSAGE);
+		}
 	}
 	
 	//action for save button to save the pet list
